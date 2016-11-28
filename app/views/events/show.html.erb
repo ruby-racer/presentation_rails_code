@@ -1,0 +1,101 @@
+<% cache(@event) do %>
+    <section class="row introSection">
+      <div class="introSection-imageWrap j-introSection-imageWrap" style="background-image: url(<%= image_path(@event.main_image.x_large) %>);">
+        <div class="columns small-12">
+          <h1 class="u-verticalAlign--center">
+            <i class="u-divider u-divider--large"></i>
+            <%= @event.name %>
+            <i class="u-divider u-divider--large"></i>
+          </h1>
+          <%= render 'layouts/scroll_indicator' %>
+        </div>
+      </div>
+    </section>
+    <section class="row bookingSection">
+      <div class="colums small-12 bookingSection-form">
+        <%= form_for :event_enquiry, url: new_event_event_enquiry_path(@event), method: :get do |f| %>
+            <div class="show-for-medium-up">
+              <label for="time"><%= t('.time') %></label>
+              <div class="bookingSection-form-field bookingSection-form-field--time">
+                <%= f.time_select :time,  {ampm: true} %>
+              </div>
+              <label for="duration"><%= t('.persons') %></label>
+              <div class="bookingSection-form-field bookingSection-form-field--persons">
+                <%= f.select :number_of_guests, options_for_select(['2', '3', '4', '5', '6', '7', '8', '9', '10+'], selected: '2'), prompt: '' %>
+              </div>
+              <%= f.submit(t('.check_availability'), class: 'j-disabled') %>
+            </div>
+            <div class="show-for-medium-down">
+              <%= f.submit(t('.check_availability'), class: 'j-disabled') %>
+            </div>
+        <% end %>
+      </div>
+    </section>
+    <section class="individualSection">
+      <div class="row collapse individualSection-descr">
+        <div class="columns small-12 wow fadeInUp">
+          <h2>
+            <%= t('.about', name: @event.name).html_safe %>
+            <i class="u-divider"></i>
+          </h2>
+          <%= @event.description %>
+        </div>
+        <%= sprite_tag('logo-icon', classes: 'individualSection-descr-bg u-svg--responsive') %>
+      </div>
+      <div class="individualSection-wrapper js-masonry">
+        <div class="individualSection-item individualSection-item--medium wow fadeInUp js-item-medium js-masonry-item js-grid-sizer">
+          <div class="individualSection-item--text u-verticalAlign--center">
+            <h3>
+              <%= mail_to('info@site.co.uk', @event.name) %>
+              <i class="u-divider"></i>
+            </h3>
+            <ul>
+              <li><%= @event.address %></li>
+              <li><%= interval_or_one_date(@event) %></li>
+              <li><%= @event.start_time.strftime('%I:%M %p') %> - <%= @event.end_time.strftime('%I:%M %p') %></li>
+              <li><%= @event.atmosphere %></li>
+              <li><%= @event.music %></li>
+              <li><%= @event.style %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="individualSection-item individualSection-item--large wow fadeInUp js-item-large js-masonry-item">
+          <div>
+            <%= link_to(image_set_tag(@images[0].try(:file).try(:small), {
+                @images[0].try(:file).try(:medium) => '1800w'
+            }, alt: @event.name), @images[0].try(:file).try(:large).try(:url), class: 'js-popup-link') %>
+          </div>
+        </div>
+        <div class="individualSection-item individualSection-item--small wow fadeInUp js-item-small js-masonry-item">
+          <div>
+            <%= link_to(image_set_tag(@images[1].try(:file).try(:small), {
+                @images[1].try(:file).try(:medium) => '1800w'
+            }, alt: @event.name), @images[1].try(:file).try(:large).try(:url), class: 'js-popup-link') %>
+          </div>
+        </div>
+        <div class="individualSection-item individualSection-item--small wow fadeInUp js-item-small js-masonry-item">
+          <div>
+            <%= link_to(image_set_tag(@images[2].try(:file).try(:small), {
+                @images[2].try(:file).try(:medium) => '1800w'
+            }, alt: @event.name), @images[2].try(:file).try(:large).try(:url), class: 'js-popup-link') %>
+          </div>
+        </div>
+        <% index = 0 %>
+        <% @images.to_a.drop(3).each do |image| %>
+            <% index += 1 %>
+            <% if 5 == index %>
+                <div class="individualSection-item individualSection-item--small js-item-small js-masonry-item"></div>
+            <% else %>
+                <div class="individualSection-item <%= freeflow_image_class(index) %> wow fadeInUp js-masonry-item">
+                  <div>
+                    <%= link_to(image_set_tag(image.try(:file).try(:small), {
+                        image.try(:file).try(:medium) => '1800w',
+                    }, alt: @event.name), image.try(:file).try(:large).try(:url), class: 'js-popup-link') %>
+                  </div>
+                </div>
+            <% end %>
+            <% index = 0 if index  == 8 %>
+        <% end %>
+      </div>
+    </section>
+<% end %>

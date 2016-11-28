@@ -1,0 +1,12 @@
+<%= f.inputs t(:address), for: [:address, f.object.address || f.object.build_address], class: 'inputs admin-addresses-inputs' do |address_form| %>
+	<%= address_form.input :line1 %>
+	<%= address_form.input :line2 %>
+	<%= address_form.input :city %>
+	<%= address_form.input :post_code %>
+	<%= address_form.input(:map_image, hint: address_form.object.map_image.present? ? image_tag(address_form.object.map_image.thumb, height: '50px') : false) %>
+	<%= address_form.input(:map_image_cache, as: :hidden) %>
+	<%= address_form.input :lat, as: :hidden, input_html: { class: 'j-admin-address-lat' } %>
+	<%= address_form.input :lng, as: :hidden, input_html: { class: 'j-admin-address-lng' } %>
+
+	<%= render('/admin/addresses/map', lat: address_form.object.lat, lng: address_form.object.lng, draggable: true) %>
+<% end %>

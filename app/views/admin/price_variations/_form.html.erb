@@ -1,0 +1,20 @@
+<%= f.inputs t('admin.price_variation.details') do %>
+	<ol>
+		<li class="has_many_container">
+			<fieldset class="inputs j-priceVariations">
+				<%= f.semantic_fields_for :price_variations, wrapper: false do |price_variation_form| %>
+					<ol class="fields">
+						<%= price_variation_form.input(:date_from, as: :date_picker) %>
+						<%= price_variation_form.input(:date_to, as: :date_picker) %>
+						<%= price_variation_form.input(:price) %>
+						<li>
+							<%= price_variation_form.link_to_remove(t('admin.price_variations.remove'), class: 'button') %>
+						</li>
+					</ol>
+				<% end %>
+			</fieldset>
+			<p><%= f.link_to_add(t('admin.price_variations.add'), :price_variations, class: 'button', data: { target: '.j-priceVariations' }) %></p>
+			<br/>
+		</li>
+	</ol>
+<% end %>

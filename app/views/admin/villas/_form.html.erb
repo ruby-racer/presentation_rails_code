@@ -1,0 +1,28 @@
+<%= semantic_nested_form_for([:admin,@villa]) do |f| %>
+    <%= f.semantic_errors *f.object.errors.keys %>
+
+    <%= f.inputs t('admin.villa.details') do %>
+        <%= f.input :zone, as: :select, collection: Villa.zones, include_blank: false %>
+        <%= f.input :name %>
+        <%= f.input :visible, as: :boolean %>
+        <%= f.input :beds %>
+        <%= f.input :baths %>
+        <%= f.input :pool %>
+        <%= f.input :price_per_week %>
+        <%= f.input(:main_image, hint: f.object.main_image.present? ? image_tag(f.object.main_image.thumb, height: '50px') : false) %>
+        <%= f.input(:main_image_cache, as: :hidden) %>
+        <%= f.input :description %>
+    <% end %>
+
+    <%= f.inputs t('admin.villa.features') do %>
+        <%= f.input :features, as: :check_boxes, collection: VillaFeature.all %>
+    <% end %>
+
+    <%= render '/admin/price_variations/form', f: f %>
+    <%= render '/admin/images/form', f: f %>
+    <%= render '/admin/videos/form', f: f %>
+    <%= render '/admin/addresses/form', f: f %>
+    <%= render '/admin/seo_details/form', f: f %>
+
+    <%= f.actions %>
+<% end %>

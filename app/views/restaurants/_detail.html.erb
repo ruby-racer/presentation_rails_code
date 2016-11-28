@@ -1,0 +1,17 @@
+<li class="portfolioItem u-image--fullWidth">
+  <%= image_set_tag(restaurant.try(:main_image).try(:small), {
+      restaurant.try(:main_image).try(:medium) => '1800w',
+      restaurant.try(:main_image).try(:large) => '2800w'
+  }, alt: restaurant.name) %>
+  <div class="portfolioItem-overlay">
+    <%= link_to restaurant, class: 'portfolioItem-overlay-info' do %>
+        <div class="u-verticalAlign--center">
+          <h3>
+            <%= restaurant.name %>
+            <i class="u-divider"></i>
+          </h3>
+          <p><%= truncate(restaurant.description, length: 120) %></p>
+        </div>
+    <% end %>
+  </div>
+</li>

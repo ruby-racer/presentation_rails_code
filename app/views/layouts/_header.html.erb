@@ -1,0 +1,71 @@
+<header class="row header">
+    <div class="columns small-3">
+        <% if current_user %>
+            <div class="header-welcome">
+                <span class="u-verticalAlign--center">
+                    <%= link_to(t('.welcome_user', name: current_user.full_name), edit_user_path(current_user)) %>
+                </span>
+            </div>
+        <% else %>
+            <p></p>
+        <% end %>
+    </div>
+    <div class="columns small-6 header-logo">
+        <%= link_to(sprite_tag('logo', classes: 'header-logoIcon'), root_path) %>
+    </div>
+    <div class="columns small-3">
+        <div class="navbarMain">
+            <% if current_user %>
+                <ul class="navbarMain-mobileHamburger u-stripped u-list--plain js-navTrigger">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="navbarMain-inner js-nav">
+                    <div class="navbarMain-scroll">
+                        <nav class="navbarMain-nav">
+                            <ul class="u-list--plain">
+                                <li class="<%= 'is-active' if current_page?(site_path) %>">
+                                    <%= link_to(t('layouts.navs.site'), site_path, title: t('layouts.navs.site')) %>
+                                    <i class="u-divider"></i>
+                                </li>
+                                <li class="<%= 'is-active' if current_page?(boats_path) || @boat %>">
+                                    <%= link_to(t('layouts.navs.yachts'), boats_path, title: t('layouts.navs.yachts')) %>
+                                    <i class="u-divider"></i>
+                                </li>
+                                <li class="<%= 'is-active' if current_page?(villas_path) || @villa %>">
+                                    <%= link_to(t('layouts.navs.villas'), villas_path, title: t('layouts.navs.villas')) %>
+                                    <i class="u-divider"></i>
+                                </li>
+                                <li class="<%= 'is-active' if current_page?(transport_modes_path) || @transport_mode %>">
+                                    <%= link_to(t('layouts.navs.transport'), transport_modes_path, title: t('layouts.navs.transport')) %>
+                                    <i class="u-divider"></i>
+                                </li>
+                                <li class="<%= 'is-active' if current_page?(hotels_path) || @hotel %>">
+                                    <%= link_to(t('layouts.navs.hotels'), hotels_path, title: t('layouts.navs.hotels')) %>
+                                    <i class="u-divider"></i>
+                                </li>
+                                <% if current_user %>
+                                    <li class="<%= 'is-active' if current_page?(edit_user_path(current_user)) %>">
+                                        <%= link_to(t('layouts.navs.profile'), edit_user_path(current_user), title: t('layouts.navs.profile')) %>
+                                        <i class="u-divider"></i>
+                                    </li>
+                                    <li>
+                                        <%= link_to(t('layouts.navs.sign_out'), destroy_user_session_path, method: :delete, title: t('layouts.navs.sign_out')) %>
+                                        <i class="u-divider"></i>
+                                    </li>
+                                <% else %>
+                                    <li class="<%= 'is-active' if current_page?(new_user_session_path) %>">
+                                        <%= link_to(t('layouts.navs.sign_in'), new_user_session_path, title: t('layouts.navs.sign_in')) %>
+                                        <i class="u-divider"></i>
+                                    </li>
+                                <% end %>
+                            </ul>
+                            <%= link_to(sprite_tag('logo-icon', classes: 'navbarMain-nav-logoIcon'), root_path) %>
+                        </nav>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</header>

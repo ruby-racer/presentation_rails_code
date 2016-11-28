@@ -1,0 +1,17 @@
+<li class="portfolioItem u-image--fullWidth">
+  <%= image_set_tag(event.try(:main_image).try(:small), {
+      event.try(:main_image).try(:medium) => '1800w',
+      event.try(:main_image).try(:large) => '2800w'
+  }, alt: event.name) %>
+  <div class="portfolioItem-overlay">
+    <%= link_to event, class: 'portfolioItem-overlay-info' do %>
+        <div class="u-verticalAlign--center">
+          <h3>
+            <%= event.name %>
+            <i class="u-divider"></i>
+          </h3>
+          <p><%= truncate(event.description, length: 120) %></p>
+        </div>
+    <% end %>
+  </div>
+</li>

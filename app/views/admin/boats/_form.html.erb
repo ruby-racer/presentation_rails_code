@@ -1,0 +1,26 @@
+<%= semantic_nested_form_for([:admin,@boat]) do |f| %>
+
+	<%= f.inputs t('admin.boat.details') do %>
+	  <%= f.input :name %>
+	  <%= f.input :visible %>
+	  <%= f.input :make %>
+	  <%= f.input :berths %>
+	  <%= f.input :max_passengers %>
+	  <%= f.input :length %>
+	  <%= f.input :registration %>
+	  <%= f.input :price %>
+	  <%= f.input(:main_image, hint: f.object.main_image.present? ? image_tag(f.object.main_image.thumb, height: '50px') : false) %>
+	  <%= f.input(:main_image_cache, as: :hidden) %>
+	  <%= f.input :description %>
+	<% end %>
+
+	<%= f.inputs t('admin.toys.details') do %>
+		<%= f.input :toys, as: :check_boxes, collection: Toy.all %>
+	<% end %>
+
+	<%= render '/admin/images/form', f: f %>
+	<%= render '/admin/videos/form', f: f %>
+	<%= render '/admin/seo_details/form', f: f %>
+
+	<%= f.actions %>
+<% end %>

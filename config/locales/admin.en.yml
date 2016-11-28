@@ -1,0 +1,95 @@
+en:
+  admin:
+    address:
+      details: 'Address details'
+
+    boat:
+      details: 'Boat details'
+
+    booking_request:
+      details: 'Booking request details'
+      form:
+        lables:
+          user: 'Customer last name'
+      filter:
+        boat: 'Boat name contains'
+        transport: 'Transport mode name contains'
+        villa: 'Villa name contains'
+
+    common_timestamps_sidebar: 'Timestamps'
+    common_details_sidebar: 'Details'
+
+    event:
+      details: 'Event details'
+
+    remove_image_label: 'Remove Image'
+
+    global_config:
+      address: 'Address'
+
+    images:
+      add: 'Add image'
+      details: 'Images'
+      remove: 'Remove?'
+
+    navigation:
+      boats: 'Boats'
+      booking_enquiries: 'Booking enquiries'
+      configuration: 'Site configuration'
+      villas: 'Villa Management'
+
+    hotel:
+      sidebar:
+        image: 'Image'
+      show:
+        details: 'Details'
+      form:
+        configuration: 'Configuration'
+
+    page:
+      sidebar:
+        image: 'Image'
+        configuration: 'Configuration'
+      form:
+        configuration: 'Configuration'
+        page_details: 'Page Details'
+
+    service_personnel:
+      details: 'Personnel'
+
+    price_variation:
+      details: 'Price variations'
+
+    rental_rates:
+      details: 'Rental rates'
+
+    restaurant:
+      details: 'Restaurant details'
+    seo_details:
+      show:
+        details: 'Seo details for %{template}'
+      form:
+        details: 'Seo details for %{template}'
+      meta_title:
+        hint: 'This title will appear as the page title in the browser'
+      meta_description:
+        hint: 'This description will act as the meta description in the browser'
+      meta_url:
+        format: 'Meta url can only have lowercase letters, numbers and hyphens eg: friendly-url-1'
+
+    toys:
+      details: 'Toys'
+
+    users:
+      details: 'User details'
+
+    videos:
+      add: 'Add video'
+      details: 'Videos'
+      remove: 'Remove?'
+
+    villa:
+      details: 'Villa details'
+      features: 'Features'
+      images: 'Images'
+      videos: 'Videos'

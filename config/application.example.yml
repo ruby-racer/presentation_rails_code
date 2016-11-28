@@ -1,0 +1,7 @@
+development:
+  fb_app_key:
+  fb_app_secret:
+
+production:
+  fb_app_key:
+  fb_app_secret:

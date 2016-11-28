@@ -1,0 +1,5 @@
+<%= form_for(:user, url: registration_path(:user)) do |f| %>
+    <%= devise_error_messages! %>
+    <%= render 'users/fields', f: f %>
+    <%= f.submit t('users.form.register'), class: 'btn--transparent' %>
+<% end %>

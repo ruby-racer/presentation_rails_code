@@ -1,0 +1,7 @@
+<% if f.object.errors.any? %>
+    <ul class="formErrors">
+        <% f.object.errors.values.each do |message| %>
+            <li><%= message[0] %></li>
+        <% end %>
+    </ul>
+<% end %>

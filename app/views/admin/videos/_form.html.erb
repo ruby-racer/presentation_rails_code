@@ -1,0 +1,19 @@
+<%= f.inputs t('admin.videos.details') do %>
+	<ol>
+		<li class="has_many_container">
+			<fieldset class="inputs j-videos">
+				<%= f.semantic_fields_for :videos, f.object.videos.by_latest, wrapper: false do |video_form| %>
+					<ol class="fields">
+						<%= video_form.input(:url) %>
+						<%= video_form.input(:description) %>
+						<li>
+							<%= video_form.link_to_remove(t('admin.videos.remove'), class: 'button') %>
+						</li>
+					</ol>
+				<% end %>
+			</fieldset>
+			<p><%= f.link_to_add(t('admin.videos.add'), :videos, class: 'button', data: { target: '.j-videos' }) %></p>
+			<br/>
+		</li>
+	</ol>
+<% end %>

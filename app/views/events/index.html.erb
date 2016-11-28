@@ -1,0 +1,38 @@
+<% cache(Event.cache_key) do %>
+    <section class="row introSection">
+        <div class="introSection-imageWrap introSection-imageWrap--events j-introSection-imageWrap">
+            <div class="columns small-12">
+                <h1 class="u-verticalAlign--center">
+                    <i class="u-divider u-divider--large"></i>
+                    <%= mail_to('info@site.co.uk', t('.title')) %>
+                    <i class="u-divider u-divider--large"></i>
+                </h1>
+                <%= render 'layouts/scroll_indicator' %>
+            </div>
+        </div>
+    </section>
+    <section class="infoSection infoSection--events">
+        <div class="row" data-equalizer>
+            <div class="columns medium-5 infoSection-descr" data-equalizer-watch>
+                <h2>
+                    <%= t('.events').html_safe %>
+                    <i class="u-divider"></i>
+                </h2>
+                <div class="infoSection-descr--narrow">
+                    <%= t('.events_intro').html_safe %>
+                </div>
+            </div>
+            <div class="columns medium-7 infoSection-img hide-for-small-only" data-equalizer-watch></div>
+        </div>
+    </section>
+    <section class="videoSection videoSection--events u-image--fullWidth hide-for-small-only"></section>
+    <section class="row">
+        <ul class="small-block-grid-1 medium-block-grid-2">
+            <% @events.each do |event| %>
+                <% cache(event) do %>
+                    <%= render 'detail', event: event %>
+                <% end %>
+            <% end %>
+        </ul>
+    </section>
+<% end %>

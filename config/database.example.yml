@@ -1,0 +1,26 @@
+postgresql_base: &postgresql_base
+  adapter: postgresql
+  username: username
+  password: password
+  host: localhost
+  encoding: utf8
+  reconnect: true
+  pool: 5
+
+production:
+  <<: *postgresql_base
+  database: database_name_prod
+
+staging:
+  <<: *postgresql_base
+  database: database_name_stage
+
+development:
+  <<: *postgresql_base
+  database: database_name_dev
+
+test: &test
+  <<: *postgresql_base
+  database: database_name_test
+cucumber:
+  <<: *postgresql_base

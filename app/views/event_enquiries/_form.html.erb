@@ -1,0 +1,50 @@
+<section class="bookingEnquiry">
+  <div class="bookingEnquiryWrap">
+    <div class="bookingEnquiryContent">
+      <h2>
+        <span><%= t('booking_enquiries.book') %></span> <%= @event.name %>
+        <i class="u-divider"></i>
+      </h2>
+
+      <%= form_for([@event, @event_enquiry], html: { class: 'bookingEnquiryForm' }) do |f| %>
+          <%= render 'layouts/form_errors', f: f %>
+          <div class='row '>
+            <div class="small-12 medium-4 columns">
+              <%= f.label :number_of_guests %>
+            </div>
+            <div class="small-12 medium-8 columns">
+              <%= f.select :number_of_guests, options_for_select(['2', '3', '4', '5', '6', '7', '8', '9', '10+'], params[:event_enquiry][:number_of_guests]), prompt: '' %>
+            </div>
+          </div>
+          <div class='row'>
+            <div class="small-12 medium-4 columns">
+              <%= f.label :date %>
+            </div>
+            <div class="small-12 medium-8 columns bookingEnquiryForm-dateSelect">
+              <%= f.date_select :date, start_year: Date.today.year, input_html: {type: 'date'}, prompt: { day: t('date.day_label'), month: t('date.month_label'), year: t('date.year_label') } %>
+            </div>
+          </div>
+          <div class='row '>
+            <div class="small-12 medium-4 columns">
+              <%= f.label :time %>
+            </div>
+            <div class="small-12 medium-8 columns bookingEnquiryForm-timeSelect">
+              <%= f.time_select :time, default: {hour: params[:event_enquiry]['time(4i)'], minute: params[:event_enquiry]['time(5i)']}, ampm: true %>
+            </div>
+          </div>
+          <div class='row '>
+            <div class="small-12 medium-4 columns">
+              <%= f.label :message %>
+            </div>
+            <div class="small-12 medium-8 columns">
+              <%= f.text_area :message %>
+            </div>
+          </div>
+          <i class="u-formDivider"></i>
+          <div class="bookingEnquiryContent-submit">
+            <%= f.submit(t('booking_enquiries.enquire')) %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</section>

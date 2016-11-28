@@ -1,0 +1,5 @@
+<%= f.inputs t(:seo_details), for: [:seo_detail, f.object.seo_detail || f.object.build_seo_detail] do |seo_form| %>
+	<%= seo_form.input :meta_title, hint: t('admin.seo_details.meta_title.hint') %>
+	<%= seo_form.input :meta_description, input_html: {rows: 3}, hint: t('admin.seo_details.meta_description.hint') %>
+	<%= seo_form.input :meta_url, hint: t('admin.seo_details.meta_url.format') %>
+<% end %>

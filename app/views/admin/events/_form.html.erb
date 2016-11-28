@@ -1,0 +1,32 @@
+<%= semantic_nested_form_for([:admin,@event]) do |f| %>
+    <%= f.semantic_errors *f.object.errors.keys %>
+
+    <%= f.inputs t('admin.event.details') do %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.input :visible %>
+        <%= f.input :position %>
+        <li>
+          <%= f.label :start_time %>
+          <%= f.time_select :start_time, :ampm => true %>
+        </li>
+        <li>
+          <%= f.label :end_time %>
+          <%= f.time_select :end_time, :ampm => true %>
+        </li>
+        <%= f.input :atmosphere %>
+        <%= f.input :music %>
+        <%= f.input :style %>
+        <%= f.input(:main_image, hint: f.object.main_image.present? ? image_tag(f.object.main_image.thumb, height: '50px') : false) %>
+        <%= f.input(:main_image_cache, as: :hidden) %>
+        <%= f.input :description %>
+    <% end %>
+
+    <%= render '/admin/images/form', f: f %>
+    <%= render '/admin/videos/form', f: f %>
+    <%= render '/admin/seo_details/form', f: f %>
+
+    <%= f.actions %>
+<% end %>

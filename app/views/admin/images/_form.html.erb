@@ -1,0 +1,20 @@
+<%= f.inputs t('admin.images.details') do %>
+	<ol>
+		<li class="has_many_container">
+			<fieldset class="inputs j-images">
+				<%= f.semantic_fields_for :images, f.object.images.by_latest, wrapper: false do |image_form| %>
+					<ol class="fields">
+						<%= image_form.input(:file, hint: image_form.object.file.present? ? image_tag(image_form.object.file.thumb, height: '50px') : false) %>
+						<%= image_form.input(:file_cache, as: :hidden) %>
+						<%= image_form.input(:alt_text) %>
+						<li>
+							<%= image_form.link_to_remove(t('admin.images.remove'), class: 'button') %>
+						</li>
+					</ol>
+				<% end %>
+			</fieldset>
+			<p><%= f.link_to_add(t('admin.images.add'), :images, class: 'button', data: { target: '.j-images' }) %></p>
+			<br/>
+		</li>
+	</ol>
+<% end %>

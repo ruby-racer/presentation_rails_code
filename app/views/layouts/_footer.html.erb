@@ -1,0 +1,49 @@
+<footer class="footer">
+    <ul class="footer-social u-list--plain u-list--inline">
+        <li><%= link_to(sprite_tag('social-fb'), '#', target: :blank) %></li>
+        <li><%= link_to(sprite_tag('social-tt'), '#', target: :blank) %></li>
+        <li><%= link_to(sprite_tag('social-insta'), '#', target: :blank) %></li>
+    </ul>
+    <div class="row">
+        <div class="column small-12">
+            <nav class="footer-nav">
+                <ul class="u-list--plain u-list--inline">
+                    <li class="<%= 'is-active' if current_page?(site_path) %>">
+                        <%= link_to(t('layouts.navs.site'), site_path, title: t('layouts.navs.site')) %></i>
+                    </li>
+                    <li class="<%= 'is-active' if current_page?(boats_path) %>">
+                        <%= link_to(t('layouts.navs.yachts'), boats_path, title: t('layouts.navs.yachts')) %></i>
+                    </li>
+                    <li class="<%= 'is-active' if current_page?(villas_path) %>">
+                        <%= link_to(t('layouts.navs.villas'), villas_path, title: t('layouts.navs.villas')) %></i>
+                    </li>
+                    <li class="<%= 'is-active' if current_page?(transport_modes_path) %>">
+                        <%= link_to(t('layouts.navs.transport'), transport_modes_path, title: t('layouts.navs.transport')) %></i>
+                    </li>
+                    <li class="<%= 'is-active' if current_page?(hotels_path) %>">
+                        <%= link_to(t('layouts.navs.hotels'), hotels_path, title: t('layouts.navs.hotels')) %></i>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row footer-nav--bottom">
+        <div class="column medium-6">
+            <ul class="footer-links footer-links--left u-list--plain">
+                <li><%= t('layouts.application.title') %> <%= Date.today.year %></li>
+                <!-- <li><%#= t('.t', tel: '+447980675582') %></li> -->
+                <li><%= t('.e') %> <%= mail_to('info@site.co.uk', 'info@site.co.uk') %></li>
+            </ul>
+        </div>
+        <div class="column medium-6">
+            <ul class="footer-links u-list--plain">
+                <% Page.is_nav_item.each do |page| %>
+                    <li><%= link_to(page.title, page) %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <div class="scrollTop-wrap">
+        <%= link_to("<span>#{sprite_tag('arrow', classes: 'scrollTop-icon')}</span>".html_safe, '#', class: 'scrollTop js-scrollTop') %>
+    </div>
+</footer>
